@@ -11,7 +11,6 @@ final class NetworkMonitor {
     private let monitor = NWPathMonitor()
     private let queue   = DispatchQueue(label: "com.app.NetworkMonitor")
 
-    // ✅ Published so ViewModels can react to changes
     @Published private(set) var isConnected: Bool = true
     private var isSettled = false
 

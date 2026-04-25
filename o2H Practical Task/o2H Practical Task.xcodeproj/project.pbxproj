@@ -17,11 +17,9 @@
 		93609D7B2F9C78480012D2BF /* RealmObjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93609D622F9C78480012D2BF /* RealmObjectManager.swift */; };
 		93609D7E2F9C78480012D2BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93609D4D2F9C78480012D2BF /* Assets.xcassets */; };
 		93609D7F2F9C78480012D2BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93609D532F9C78480012D2BF /* GoogleService-Info.plist */; };
-		938F2D242F9C03DF0065C3F2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 938F2D232F9C03DF0065C3F2 /* Kingfisher */; };
 		93A39F202F9A951100DA9F48 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 93A39F1F2F9A951100DA9F48 /* GoogleSignIn */; };
 		93A39F222F9A951100DA9F48 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 93A39F212F9A951100DA9F48 /* GoogleSignInSwift */; };
 		93A39F272F9A959900DA9F48 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 93A39F262F9A959900DA9F48 /* RealmSwift */; };
-		93A39F2C2F9AA2FA00DA9F48 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 93A39F2B2F9AA2FA00DA9F48 /* FirebaseAuth */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,8 +102,6 @@
 				93A39F272F9A959900DA9F48 /* RealmSwift in Frameworks */,
 				93A39F202F9A951100DA9F48 /* GoogleSignIn in Frameworks */,
 				93A39F222F9A951100DA9F48 /* GoogleSignInSwift in Frameworks */,
-				93A39F2C2F9AA2FA00DA9F48 /* FirebaseAuth in Frameworks */,
-				938F2D242F9C03DF0065C3F2 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,8 +205,6 @@
 				93A39F1F2F9A951100DA9F48 /* GoogleSignIn */,
 				93A39F212F9A951100DA9F48 /* GoogleSignInSwift */,
 				93A39F262F9A959900DA9F48 /* RealmSwift */,
-				93A39F2B2F9AA2FA00DA9F48 /* FirebaseAuth */,
-				938F2D232F9C03DF0065C3F2 /* Kingfisher */,
 			);
 			productName = "o2H Practical Task";
 			productReference = 9322741F2F9CB42500E87611 /* o2H Practical Task.app */;
@@ -243,8 +237,6 @@
 			packageReferences = (
 				93A39F1E2F9A951100DA9F48 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				93A39F232F9A959900DA9F48 /* XCRemoteSwiftPackageReference "realm-swift" */,
-				93A39F2A2F9AA2FA00DA9F48 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				938F2D222F9C03DF0065C3F2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 93A39ED22F9A82C700DA9F48;
@@ -426,8 +418,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -438,13 +430,14 @@
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = 1;
 				XROS_DEPLOYMENT_TARGET = 26.4;
 			};
 			name = Debug;
@@ -472,8 +465,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -484,13 +477,14 @@
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = 1;
 				XROS_DEPLOYMENT_TARGET = 26.4;
 			};
 			name = Release;
@@ -519,14 +513,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		938F2D222F9C03DF0065C3F2 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.8.1;
-			};
-		};
 		93A39F1E2F9A951100DA9F48 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
@@ -543,22 +529,9 @@
 				kind = branch;
 			};
 		};
-		93A39F2A2F9AA2FA00DA9F48 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 12.12.1;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		938F2D232F9C03DF0065C3F2 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 938F2D222F9C03DF0065C3F2 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
 		93A39F1F2F9A951100DA9F48 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 93A39F1E2F9A951100DA9F48 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
@@ -573,11 +546,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 93A39F232F9A959900DA9F48 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
-		};
-		93A39F2B2F9AA2FA00DA9F48 /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 93A39F2A2F9AA2FA00DA9F48 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

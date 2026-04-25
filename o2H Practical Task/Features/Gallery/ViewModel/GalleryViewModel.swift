@@ -38,7 +38,7 @@ final class GalleryViewModel: ObservableObject {
         // This eliminates the race condition where isConnected is "true" at launch
         // even when device is actually offline
         let isOnline = await NetworkMonitor.shared.waitForSettled()
-        print("📡 Settled network status: \(isOnline ? "Online" : "Offline")")
+        print(" Settled network status: \(isOnline ? "Online" : "Offline")")
 
         if !isOnline && repository.hasCachedImages() {
             // Offline + cache exists → load all pages from Realm immediately
@@ -46,7 +46,6 @@ final class GalleryViewModel: ObservableObject {
             viewState = .offline
             return
         }
-
         // Online (or no cache) → normal network fetch
         await fetchNextPage()
     }
@@ -93,17 +92,13 @@ final class GalleryViewModel: ObservableObject {
         else { isLoadingMore = true }
 
         do {
-            // 1. API se metadata fetch karo (Sirf URLs milenge)
             let fetched = try await repository.fetchImages(page: nextPage)
-            
             if fetched.isEmpty {
                 hasMorePages = false
             } else {
                 currentPage = nextPage
                 append(fetched)
                 
-                // ✅ CHANGE: Background mein images download start karo
-                // Taaki offline hone se pehle hi images disk par save ho jayein
                 for image in fetched {
                     Task(priority: .background) {
                         await ImageDownloadService.shared.downloadAndCache(
@@ -117,7 +112,6 @@ final class GalleryViewModel: ObservableObject {
             viewState = NetworkMonitor.shared.isConnected ? .loaded : .offline
 
         } catch {
-            // Network fail hua, Realm se purana data uthao
             let cached = repository.fetchCachedImages(page: nextPage)
             if !cached.isEmpty {
                 currentPage = nextPage

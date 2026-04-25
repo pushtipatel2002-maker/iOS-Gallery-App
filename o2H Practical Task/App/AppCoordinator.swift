@@ -65,10 +65,12 @@ final class AppCoordinator: ObservableObject {
 
 
     func navigateToMain() {
+        selectedTab = .gallery
         appState = .main
     }
 
     func navigateToLogin() {
+        selectedTab = .gallery
         appState = .login
     }
 

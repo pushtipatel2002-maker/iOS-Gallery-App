@@ -22,7 +22,6 @@ final class RealmImageObject: Object {
     // ✅ File paths on disk — NOT raw Data
     @Persisted var thumbFilePath: String?                = nil
     @Persisted var fullFilePath: String?                 = nil
-    
     @Persisted var thumbFileName: String? = nil
     @Persisted var fullFileName: String?  = nil
 

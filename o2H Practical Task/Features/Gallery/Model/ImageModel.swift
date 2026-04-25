@@ -1,5 +1,4 @@
 // ImageModel.swift
-// Domain model — clean Swift struct, independent of any framework
 
 import Foundation
 
@@ -89,22 +88,10 @@ extension RealmImageObject {
 }
 
 // PicsumPhoto.swift
-// Decodable model matching picsum.photos /v2/list response
 
 import Foundation
 
 // MARK: - Response shape from picsum API
-// GET https://picsum.photos/v2/list?page=1&limit=20
-// [
-//   {
-//     "id": "0",
-//     "author": "Alejandro Escamilla",
-//     "width": 5616,
-//     "height": 3744,
-//     "url": "https://unsplash.com/...",
-//     "download_url": "https://picsum.photos/id/0/5616/3744"
-//   }
-// ]
 
 struct PicsumPhoto: Decodable {
     let id: String

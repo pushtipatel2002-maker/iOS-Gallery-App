@@ -97,6 +97,7 @@ struct ImageDetailView: View {
         .persistentSystemOverlays(showChrome ? .automatic : .hidden)
     }
 }
+
 private struct ZoomableImagePage: View {
     @Environment(\.dismiss) private var dismiss
     let image: ImageModel
@@ -107,25 +108,26 @@ private struct ZoomableImagePage: View {
     @State private var lastScale: CGFloat = 1.0
     @State private var offset: CGSize = .zero
     @State private var lastOffset: CGSize = .zero
+    @State private var fullImageLoaded: Bool = false
 
     var body: some View {
         ZStack {
             OfflineImageView(
-                       imageID: image.id,
-                       thumbURL: image.thumbURL,
-                       fullURL: image.thumbURL,   // ← thumb hi load karo placeholder ke liye
-                       size: .thumb
-                   )
-                   .scaledToFit()
-                   .blur(radius: 8)
-            
-        OfflineImageView(
-            imageID: image.id,
-            thumbURL: image.thumbURL,
-            fullURL: image.imageURL,
-            size: .full
-        )
-        .scaledToFit()
+                imageID: image.id,
+                thumbURL: image.thumbURL,
+                fullURL: image.thumbURL,
+                size: .thumb
+            )
+            .scaledToFit()
+
+            FullImageOverlay(
+                image: image,
+                scale: scale,
+                offset: offset,
+                verticalOffset: verticalOffset,
+                onLoaded: { fullImageLoaded = true }
+            )
+        }
         .scaleEffect(scale)
         .offset(x: offset.width, y: offset.height + verticalOffset)
         .simultaneousGesture(scale > 1 ? magnifyGesture : nil)
@@ -144,7 +146,6 @@ private struct ZoomableImagePage: View {
             }
         }
     }
-    }
 
     private var magnifyGesture: some Gesture {
         MagnificationGesture()
@@ -159,5 +160,43 @@ private struct ZoomableImagePage: View {
                     withAnimation(.spring()) { scale = 1; offset = .zero }
                 }
             }
+    }
+}
+
+// OverLay
+private struct FullImageOverlay: View {
+    let image: ImageModel
+    let scale: CGFloat
+    let offset: CGSize
+    let verticalOffset: CGFloat
+    let onLoaded: () -> Void
+
+    @StateObject private var loader: OfflineImageLoader
+
+    init(image: ImageModel, scale: CGFloat, offset: CGSize, verticalOffset: CGFloat, onLoaded: @escaping () -> Void) {
+        self.image = image
+        self.scale = scale
+        self.offset = offset
+        self.verticalOffset = verticalOffset
+        self.onLoaded = onLoaded
+        _loader = StateObject(wrappedValue: OfflineImageLoader(
+            imageID: image.id,
+            thumbURL: image.thumbURL,
+            fullURL: image.imageURL,
+            size: .full
+        ))
+    }
+
+    var body: some View {
+        Group {
+            if case .loaded(let img) = loader.state {
+                Image(uiImage: img)
+                    .resizable()
+                    .scaledToFit()
+                    .transition(.opacity.animation(.easeIn(duration: 0.25)))
+                    .onAppear { onLoaded() }
+            }
+        }
+        .task { await loader.load() }
     }
 }

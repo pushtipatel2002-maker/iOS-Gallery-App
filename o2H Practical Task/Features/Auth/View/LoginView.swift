@@ -1,5 +1,4 @@
 // LoginView.swift
-// Cinematic login — layered orbs, glassmorphism, shimmer, full light/dark support
 
 import SwiftUI
 import GoogleSignIn
@@ -9,7 +8,6 @@ struct LoginView: View {
     @EnvironmentObject var coordinator: AppCoordinator
     @StateObject private var viewModel = DIContainer.shared.makeAuthViewModel()
     @Environment(\.colorScheme) private var colorScheme
-
     @State private var showError      = false
     @State private var pulse          = false
     @State private var orbFloat       = false
@@ -319,7 +317,6 @@ struct LoginView: View {
 
             googleSignInButton
 
-            termsText
         }
         .padding(.horizontal, 22)
         .padding(.vertical, 26)
@@ -373,7 +370,13 @@ struct LoginView: View {
                         )
                 } else {
                     HStack(spacing: 13) {
-                        googleGIcon
+                        Image("ic_Google")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20, height: 20)
+                            .padding(5)
+                            .background(Color(red: 0.96, green: 0.96, blue: 0.97))
+                            .clipShape(Circle())
                         Text("Continue with Google")
                             .font(.system(size: 15.5, weight: .semibold, design: .rounded))
                             .foregroundStyle(Color(red: 0.12, green: 0.10, blue: 0.22))
@@ -387,34 +390,6 @@ struct LoginView: View {
         .scaleEffect(buttonPressed ? 0.965 : 1.0)
         .animation(.spring(response: 0.22, dampingFraction: 0.68), value: buttonPressed)
         ._onButtonGesture(pressing: { buttonPressed = $0 }, perform: {})
-    }
-
-    private var googleGIcon: some View {
-        ZStack {
-            Circle()
-                .fill(Color(red: 0.96, green: 0.96, blue: 0.97))
-                .frame(width: 30, height: 30)
-
-            Text("G")
-                .font(.system(size: 14.5, weight: .bold, design: .rounded))
-                .foregroundStyle(Color(red: 0.26, green: 0.52, blue: 0.96))
-        }
-    }
-
-    private var termsText: some View {
-        (
-            Text("By continuing, you agree to our ")
-            + Text("Terms").underline()
-            + Text(" and ")
-            + Text("Privacy Policy").underline()
-        )
-        .font(.system(size: 11, weight: .regular, design: .rounded))
-        .foregroundStyle(
-            colorScheme == .dark
-                ? Color.white.opacity(0.27)
-                : Color(red: 0.46, green: 0.40, blue: 0.58)
-        )
-        .multilineTextAlignment(.center)
     }
 
     // MARK: - Card Background

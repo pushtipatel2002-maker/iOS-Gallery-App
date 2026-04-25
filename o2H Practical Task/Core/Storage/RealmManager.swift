@@ -104,8 +104,6 @@ final class RealmManager {
     // MARK: - ✅ LRU Eviction
     // When total cache exceeds maxSizeBytes, delete least-recently-accessed images first.
 
-    // ... baki code same rahega ...
-
         func evictIfNeeded(maxSizeBytes: Int = ImageFileStorage.maxCacheSizeBytes) {
             let all = fetchSorted(RealmImageObject.self, by: "lastAccessedAt", ascending: true)
             var totalBytes = all.reduce(0) { $0 + $1.fileSizeBytes }

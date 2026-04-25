@@ -26,9 +26,7 @@ final class ImageRepository: ImageRepositoryProtocol {
         do {
             // Always try the real API first (picsum — no key needed)
             let models = try await fetchFromNetwork(page: page)
-
             guard !models.isEmpty else { return [] }
-
             // Persist metadata to Realm
             saveMetadata(models, page: page)
 
